@@ -170,20 +170,20 @@ public class ConfigDialog extends JDialog implements ActionListener {
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		if(e.getSource()==okButton) {
-			//System.out.println("okBtton is clicked!");
+			System.out.println("okBtton is clicked!");
 			ContralUtil.saveConfig();
 			dispose();
 		} else if(e.getSource()==cancelButton) {
-			//System.out.println("cancelButton is clicked!");
+			System.out.println("cancelButton is clicked!");
 			dispose();
 		} else if(e.getSource()==allSelect) {
-			//System.out.println("allSelect is clicked!");
+			System.out.println("allSelect is clicked!");
 		} else if(e.getSource()==onlySelect) {
-			//System.out.println("onlySelect is clicked!");
+			System.out.println("onlySelect is clicked!");
 		} else if(e.getSource()==checkBox) {
-			//System.out.println("checkBox is clicked!");
+			System.out.println("checkBox is clicked!");
 		} else if(e.getSource()==pathSelectButton) {
-			//System.out.println("pathSelectButton is clicked!");
+			System.out.println("pathSelectButton is clicked!");
 			showPathSelectDialog();
 		}
 	}

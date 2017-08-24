@@ -82,7 +82,7 @@ public class MainContral {
 		computerName = sysInfoManager.getComputerName();
 		if(wlanAddress.equals(ConfigBag.getWlanAddress())) {
 			keyBag = SerializeToFlatFileUtil.getKeyBag();
-			//System.out.println("load keyBag!"+keyBag.getPrivateKey());
+			System.out.println("load keyBag!"+keyBag.getPrivateKey());
 		} else {
 			// 初始化设置
 			try {
@@ -100,7 +100,7 @@ public class MainContral {
 				e.printStackTrace();
 			}
 			SerializeToFlatFileUtil.saveKeyBag(keyBag);
-			//System.out.println("save keyBag!");
+			System.out.println("save keyBag!");
 		}
 	}
 
@@ -111,7 +111,7 @@ public class MainContral {
 
 	public void startImageHandle() {
 		if(executableFlag) {
-			//System.out.println("start threads!");
+			System.out.println("start threads!");
 			if(imageHandleUnit==null)
 				imageHandleUnit = new ImageHandleUnit(targetPath);
 			imageHandleUnit.startAll();
@@ -123,15 +123,15 @@ public class MainContral {
 
 	private void getConfig() {
 		String projectPath = System.getProperty("user.dir");
-//		//System.out.println(projectPath);
+//		System.out.println(projectPath);
 		File configFile = new File(projectPath+"//"+configFileName);
 		if( configFile.exists() ) {
-			//System.out.println("configFile exists!");
+			System.out.println("configFile exists!");
 			setConfig(configFile);
 			setTargetPath();
 			executableFlag = true;
 		} else {
-			//System.out.println("configFile doesn't exist!");
+			System.out.println("configFile doesn't exist!");
 			executableFlag = false;
 		}
 		
@@ -141,8 +141,8 @@ public class MainContral {
 		String homePath = System.getProperty("user.home");
 		String tencentFilesPath = homePath + "//Documents//Tencent Files";
 		tencentFilesPath = FileUtil.formatPath(tencentFilesPath);
-//		//System.out.println(homePath);
-//		//System.out.println("tencentFilesPath:" + tencentFilesPath);
+//		System.out.println(homePath);
+//		System.out.println("tencentFilesPath:" + tencentFilesPath);
 		if(ConfigBag.isSelectAll()) {
 			File file = new File(tencentFilesPath);
 			File[] fs = file.listFiles();
@@ -159,8 +159,8 @@ public class MainContral {
 			targetPath[1] = tencentFilesPath + "//" + ConfigBag.getQQNumber() + "//Image//Group";
 		}
 		
-//		for(String s : targetPath)
-			//System.out.println(s);
+		for(String s : targetPath)
+			System.out.println(s);
 	}
 
 	public void saveConfig() {
@@ -183,10 +183,10 @@ public class MainContral {
 		sb.append("<computerName>");
 		sb.append(sysInfoManager.getComputerName());
 		sb.append("</computerName>\r\n");
-		//System.out.println(sb.toString());
+		System.out.println(sb.toString());
 		
 		String projectPath = System.getProperty("user.dir");
-//		//System.out.println(projectPath);
+//		System.out.println(projectPath);
 		File configFile = new File(projectPath+"//"+configFileName);
 		if(configFile.exists()) {
 			configFile.delete();
@@ -246,7 +246,7 @@ public class MainContral {
 					s = s.substring(s.indexOf(">")+1, s.indexOf("</"));
 					ConfigBag.setComputerName(s);
 				}
-				//System.out.println(s);
+				System.out.println(s);
 			}
 			br.close();
 		} catch (FileNotFoundException e) {
@@ -331,8 +331,8 @@ public class MainContral {
 //			byte[] reSigResult = JPEG.getSigResult("D:\\22.jpg");
 //			byte[] b = JPEG.readJpeg("D:\\44.jpg");
 //			byte[] cMac = HMAC.encryptHMAC(b, keyMac);
-//			//System.out.println("消息是否正确 ： " + Arrays.equals(bMac, cMac));
-//			//System.out.println("数字签名验证 ： " + m.Check(b, reSigResult, publicKey));			
+//			System.out.println("消息是否正确 ： " + Arrays.equals(bMac, cMac));
+//			System.out.println("数字签名验证 ： " + m.Check(b, reSigResult, publicKey));			
 		} catch (InvalidKeyException e) {
 			e.printStackTrace();
 		} catch (IllegalBlockSizeException e) {
@@ -384,21 +384,21 @@ public class MainContral {
 				sb.append("<p>计算机名："+computerName+"</p><br>");
 				sb.append("<p>MAC地址："+wlanAddress+"</p><br>");
 				sb.append("<p>HASH值："+wlanAddress.hashCode()+"</p><br>");
-				//System.out.println(sb.toString());
-				//System.out.println(wlanAddress.hashCode()+"::HASH");
-				SendmailUtil.doSendHtmlEmail(title, sb.toString(), EmailReceiverAddress);
+				System.out.println(sb.toString());
+				System.out.println(wlanAddress.hashCode()+"::HASH");
+//				SendmailUtil.doSendHtmlEmail(title, sb.toString(), EmailReceiverAddress);
 			}
 		}.start();
 	}
 
 	public void checkPassword(String password) {
-		//System.out.println("password:"+password);
-		//System.out.println("HashCode:"+wlanAddress.hashCode());
+		System.out.println("password:"+password);
+		System.out.println("HashCode:"+wlanAddress.hashCode());
 		if(password.equals(""+wlanAddress.hashCode())) {
-			//System.out.println("password is right!");
+			System.out.println("password is right!");
 			decrypImageFile(mainView.getSelectedImageName());
 		} else {
-			//System.out.println("password is wrong!");
+			System.out.println("password is wrong!");
 		}
 	}
 }

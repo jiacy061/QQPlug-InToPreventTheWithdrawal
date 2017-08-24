@@ -42,7 +42,7 @@ public class SendmailUtil {
 				return new PasswordAuthentication(SEND_USER_ACCOUNT, SEND_PWD);
 			}
 		});
-//		s.setDebug(true);
+		s.setDebug(true);
 		message = new MimeMessage(s);
 	}
 
@@ -77,12 +77,14 @@ public class SendmailUtil {
 			// 发送
 			transport.sendMessage(message, message.getAllRecipients());
 			transport.close();
-//			System.out.println("send success!");
+			System.out.println("send success!");
 		} catch (AddressException e) {
+			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} catch (MessagingException e) {
 			e.printStackTrace();
 		} catch (UnsupportedEncodingException e) {
+			// TODO 自动生成的 catch 块
 			e.printStackTrace();
 		}
 	}

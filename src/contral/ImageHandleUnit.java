@@ -33,8 +33,8 @@ public class ImageHandleUnit {
 				savedFileNameList.add(f.getName());
 			}
 		}
-		//System.out.println("** list len:"+savedFileList.size());
-		//System.out.println("&& list len:"+savedFileNameList.size());
+		System.out.println("** list len:"+savedFileList.size());
+		System.out.println("&& list len:"+savedFileNameList.size());
 	}
 
 	public void startAll() {
@@ -64,12 +64,12 @@ public class ImageHandleUnit {
 	}
 	
 	public void removeImageFileFromList(ImageBag imageBag) {
-		//System.out.println("^^^savedFileList len:"+savedFileList.size()
-//		+" savedFileNameList len:"+savedFileNameList.size());
+		System.out.println("^^^savedFileList len:"+savedFileList.size()
+		+" savedFileNameList len:"+savedFileNameList.size());
 		savedFileList.remove(imageBag);
 		savedFileNameList.remove(imageBag.getImageName());
-		//System.out.println("***savedFileList len:"+savedFileList.size()
-//		+" savedFileNameList len:"+savedFileNameList.size());
+		System.out.println("***savedFileList len:"+savedFileList.size()
+		+" savedFileNameList len:"+savedFileNameList.size());
 	}
 	
 	public String getImageFileNameOfList(int index) {
@@ -87,10 +87,11 @@ public class ImageHandleUnit {
 	public void deleteUnqualifiedFile(Long millis) {
 		for(int i=0, len=savedFileList.size(); i<len; i++) {
 			ImageBag imageBag = savedFileList.get(i);
-			if( (millis - imageBag.getMillis()) > 150000 && !imageBag.isWithdrawal()) {
+			if( (millis - imageBag.getMillis()) > minHoldTime && !imageBag.isWithdrawal()) {
 				File file = imageBag.getFile();
 				file.delete();
 				savedFileList.remove(i);
+				savedFileNameList.remove(imageBag.getImageName());
 				i--;
 				len--;
 			}
@@ -100,7 +101,7 @@ public class ImageHandleUnit {
 	public ArrayList<ImageBag> getPartImageList(String path) {
 		ArrayList<ImageBag> list = new ArrayList<ImageBag>();
 		for(ImageBag imageBag : savedFileList) {
-//			//System.out.println(path+":"+imageBag.isAppointedPath(path));
+//			System.out.println(path+":"+imageBag.isAppointedPath(path));
 			if(imageBag.isAppointedPath(path)) {
 				list.add(imageBag);
 			}

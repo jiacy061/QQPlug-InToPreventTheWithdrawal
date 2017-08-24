@@ -84,7 +84,7 @@ public class MainView implements ActionListener, ItemListener, MouseListener {
 		frame = new JFrame("QQ图片防撤回") {
 			@Override
 			public void dispose() {
-//				//System.out.println("程序关闭");
+//				System.out.println("程序关闭");
 				ContralUtil.stopImageHandle();
 				ContralUtil.endProgram();
 				super.dispose();
@@ -257,10 +257,10 @@ public class MainView implements ActionListener, ItemListener, MouseListener {
 
 	private void showConfigDialog() {
 		if(cd==null) {
-//			//System.out.println("ConfigDialog is null!");
+//			System.out.println("ConfigDialog is null!");
 			cd = new ConfigDialog(frame);
 		} else {
-//			//System.out.println("ConfigDialog is not null!");
+//			System.out.println("ConfigDialog is not null!");
 			cd.dispose();
 			cd = new ConfigDialog(frame);
 		}
@@ -282,7 +282,7 @@ public class MainView implements ActionListener, ItemListener, MouseListener {
 		if(ret==JOptionPane.OK_OPTION) {
 			System.out.print("In MainView::");
 			char[] s = pwd.getPassword();
-			//System.out.println(s);
+			System.out.println(s);
 			String password = String.copyValueOf(s);
 			ContralUtil.checkPassword(password);
 		}
@@ -316,18 +316,18 @@ public class MainView implements ActionListener, ItemListener, MouseListener {
 
 	@Override
 	public void itemStateChanged(ItemEvent i) {
-//		//System.out.println("source:\t" + i.getSource());
-//		//System.out.println("item:\t" + i.getItem());
-//		//System.out.println("ID:\t" + i.getID());
-//		//System.out.println("StateChange:" + i.getStateChange());
+//		System.out.println("source:\t" + i.getSource());
+//		System.out.println("item:\t" + i.getItem());
+//		System.out.println("ID:\t" + i.getID());
+//		System.out.println("StateChange:" + i.getStateChange());
 		if(i.getStateChange()==1) {
 			refreshTableData();
 			if(i.getItem()==comboBoxData[0]) {
-				//System.out.println("AllSelect is clicked!");
+				System.out.println("AllSelect is clicked!");
 			} else if(i.getItem()==comboBoxData[1]) {
-				//System.out.println("C2C is clicked!");
+				System.out.println("C2C is clicked!");
 			} else if(i.getItem()==comboBoxData[2]) {
-				//System.out.println("Group is clicked!");
+				System.out.println("Group is clicked!");
 			}
 		}
 	}
@@ -335,19 +335,19 @@ public class MainView implements ActionListener, ItemListener, MouseListener {
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		if(e.getSource() == config) {
-			//System.out.println("config is clicked!");
+			System.out.println("config is clicked!");
 			showConfigDialog();
 			ContralUtil.setConfigDialog();
 		} else if(e.getSource() == decode) {
-			//System.out.println("decode is clicked!");
+			System.out.println("decode is clicked!");
 			showPasswordDialog();
 		} else if(e.getSource() == about) {
-			//System.out.println("about is clicked!");
+			System.out.println("about is clicked!");
 			showAboutUsDialog();
 		} else if(e.getSource() == encrypt) {
-			//System.out.println("encrypt is clicked!");
+			System.out.println("encrypt is clicked!");
 		} else if(e.getSource()==startOrStopButton) {
-			//System.out.println("startOrStopButton is clicked!");
+			System.out.println("startOrStopButton is clicked!");
 			if(startOrStopButton.isSelected()) {
 				startOrStopButton.setText("停止");
 				ContralUtil.startImageHandle();
@@ -358,7 +358,7 @@ public class MainView implements ActionListener, ItemListener, MouseListener {
 		} else if(e.getSource()==refreshButton) {
 			refreshTableData();
 		} else if(e.getSource()==getPasswordButton) {
-			//System.out.println("getPasswordButton is clicked!");
+			System.out.println("getPasswordButton is clicked!");
 			ContralUtil.getPassword();
 		}
 	}
@@ -366,10 +366,10 @@ public class MainView implements ActionListener, ItemListener, MouseListener {
 	@Override
 	public void mouseClicked(MouseEvent e) {
 		if(e.getSource()==table) {
-			//System.out.println("table is clicked!");
+			System.out.println("table is clicked!");
 			ImageBag imageBag = dataModel.getSelectItem(table.getSelectedRow());
-//			//System.out.println(imageBag.getImageName());
-//			//System.out.println(imageBag.getImagePath());
+//			System.out.println(imageBag.getImageName());
+//			System.out.println(imageBag.getImagePath());
 			if(imageBag==null) {
 				String tip = "图片未撤回，不再显示于列表";
 				imageNameText.setText(tip);
