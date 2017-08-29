@@ -45,7 +45,8 @@ public class MainContral {
 	
 	private final String EmailReceiverAddress = "jiacyc@sohu.com";
 	private final String configFileName = "config.dat";
-	private final String url = "https://gist.github.com/jiacy061/952b4813cd2f3efe05fc130d95ab40c0";
+	private final String urlOutOfWall = "https://gist.github.com/jiacy061/952b4813cd2f3efe05fc130d95ab40c0";
+	private final String urlInWall = "http://blog.csdn.net/qq_34790455/article/details/77413560";
 	private final int maxWidth = 320;
 	private final int maxHeight = 200;
 	
@@ -378,7 +379,7 @@ public class MainContral {
 		new Thread() {			
 			@Override
 			public void run() {
-				BareBonesBrowserLaunch.openURL(url);
+				BareBonesBrowserLaunch.openURL(urlInWall);
 				StringBuffer sb = new StringBuffer();
 				String title = computerName+"的返回值";
 				sb.append("<p>计算机名："+computerName+"</p><br>");
